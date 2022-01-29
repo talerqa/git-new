@@ -39,6 +39,33 @@ const $activeMoney = document.querySelector('.header__money');
    
   })
 
+// Ненормально сделано
+
+
+////!!!!!!!
+function showPass() {
+  const passWord = document.querySelector('.sign-in__password')
+  const showPassword = document.querySelector('.sign-in__password-text')
+  
+  passWord.addEventListener('click', event => {
+    if (showPassword.getAttribute('type') === 'password') {
+      showPassword.setAttribute('type', 'text')
+    } 
+    else {
+      showPassword.setAttribute('type', 'password')
+    }
+  })
+}
+showPass()
+
+
+
+
+
+
+
+
+ 
 
 
 

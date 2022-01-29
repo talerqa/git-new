@@ -6,6 +6,8 @@ $fontSize16: 16px;
 $fontSize14:	14px;
 $color900: #1E212C;
 $color800: #424551;
+$color700: rgba(120, 122, 128, 1);
+
 
 @mixin small-extrabold {
   font-size: 14px;
@@ -58,7 +60,9 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: 1250px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 
@@ -79,11 +83,14 @@ body {
   &__top-inner {
     display: flex;
     justify-content: space-between;
+
   }
   
   &__top-info {
     @include small-regular;
-    padding: 11px 199.5px 12px 0px
+    // padding: 11px 199.5px 12px 0px
+    padding: 11px 0px 12px;
+    flex: 1 1 auto;
   }
 
   &__top-number {
@@ -93,8 +100,11 @@ body {
 
   &__top-menu__active {
     @include small-regular; 
-    padding: 11px 196px 12px 0px;
+    // padding: 11px 196px 12px 0px;
+    padding: 11px 0px 12px 16px;
     display: flex;
+    flex: 1 1 auto;
+
     
     &__link {
       display: inline-block;
@@ -112,6 +122,7 @@ body {
     align-items: center;
     background-color: transparent;
     position: relative;
+
   }
 
   &__money {
@@ -338,10 +349,13 @@ body {
 
 .logo {
   padding: 31px 60px 31px 0;
+  flex: 1 1 auto;
 }
 
 .menu {
-     margin-right: 133px;
+     margin-left: 0px;
+     margin-right: auto;
+     padding-right: 15px;
    
 		&__list {
       display: flex;
@@ -366,6 +380,7 @@ body {
       color: rgba(255, 66, 66, 1);
 		}
 }
+
 
 
 .menu__active {
@@ -486,17 +501,12 @@ body {
     border: 1px solid rgba(23, 105, 106, 1);
     border-radius: 4px;
   }
-
-
-  
 }
 
 .menu__active--active {
   z-index: 50;
   opacity: 1;
 }
-
-
 
 .dark__theme {
   width: 100%;
@@ -514,4 +524,234 @@ body {
 
 .main {
   background-color: #fff;
+}
+
+.sign-in {
+  height: 665px;
+  width: 486px;
+  // left: 717px;
+  // top: 208px;
+  border-radius: 4px;
+  border: 1px solid red;
+  background-color: #fff;
+  margin: 0 auto;
+
+  &__close {
+    position: relative;
+    background-color: transparent; 
+    display: block;
+    padding-right: 24px;
+    padding-top: 24px;
+    margin-left: 438px;
+    margin-top: 24px;
+    margin-bottom: 4px;
+   }
+
+  &__close::after {
+    content: '';
+    display: inline-block;
+    padding-left: 1px;
+    width: 16px;
+    position: absolute;
+    bottom: 48%;
+    left: 4px;
+    transform: rotate(45deg);
+    border-bottom: 2px solid $color800;
+    border-radius: 1px;
+  }
+
+  &__close::before {
+    content: '';
+    display: inline-block;
+    padding-left: 1px;
+    width: 16px;
+    position: absolute;
+    bottom: 48%;
+    left: 4px;
+    transform: rotate(-45deg);
+    border-bottom: 2px solid $color800;
+    border-radius: 1px;
+  }
+
+  &__title {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  &__subtitle {
+    @include small-regular;
+    color: $color700;
+    padding-bottom: 24px;  
+    padding-left: 48px;
+    padding-right: 48px;
+    text-align: center;
+  }
+
+  &__form {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E5E8ED;
+  }
+
+  &__email {
+    @include small-regular;
+    color: $color800;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  &__email-input {
+    margin-top: 4px;
+    border: 1px solid #D7DADD;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 44px;
+    @include small-regular;
+    padding-left: 16px;
+  }
+
+  &__email-input::placeholder {
+    @include small-regular;
+    display: block;
+    color: rgba(154, 156, 165, 1);
+  }
+
+  &__password {
+    @include small-regular;
+    color: $color800;
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  &__password-text {
+    margin-top: 4px;
+    border: 1px solid #D7DADD;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 44px;
+    @include small-regular;
+    padding-left: 16px;
+  }
+
+  &__password-text::placeholder {
+    color: $color800;
+  }
+
+  &__eye {
+    position: absolute;
+    top: 40px;
+    right: 14px;
+
+  }
+
+  &__checkbox {
+    @include small-regular;
+    color: $color800;
+    padding-right: 141px;
+  }
+
+  &__input-checkbox {
+    display: inline-block;
+
+  }
+
+  &__forgot-link{
+    display: inline-block;
+    @include small-regular;
+    color: rgba(23, 105, 106, 1);
+
+  }
+
+  &__btn-wrapper{
+    margin: 24px 0;
+  }
+
+  &__btn {
+    display: block;
+    padding: 0px 172.5px;
+    
+    background-color: transparent;
+    height: 44px;
+    background-color: rgba(23, 105, 106, 1);
+    border-radius: 4px;
+
+  }
+
+  &__btn-text {
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0.5px;
+    text-align: left;
+
+  }
+
+  &__text {
+    color: $color800;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+
+  }
+
+  &__text-inner {
+    color: rgba(23, 105, 106, 1);
+  }
+
+
+  &__social-media {
+    padding: 24px 48px 27px 48px;
+  }
+
+  &__with {
+    @include small-regular;
+    color: $color700;
+    text-align: center;
+  }
+
+  &__social-link {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__item {
+    width: 32px;
+    height: 32px;
+    background-color:rgba(120, 122, 128, 0.12);
+    border-radius: 4px;
+  }
+
+  &__link {
+    position: relative;
+  
+  }
+
+  &__img {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    object-position: center;
+    z-index: 1;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 12px;
+  }
+
 }
