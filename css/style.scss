@@ -72,6 +72,7 @@ body {
   color: rgba(255, 255, 255, 0.6);
   margin: 0 auto;
   justify-content: space-between;
+  position: relative;
   &__top {
     background-color: $color900;
   }
@@ -517,6 +518,17 @@ body {
   transition: all 500ms ease-in;
 }
 
+.dark__theme_log {
+  position: absolute;
+  display: block;
+  z-index: 10;
+  width: 100%;
+  height: 150%;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5);
+  transition: all 500ms ease-in;
+}
+
 .hero__img {
   display: inline-block;
   max-width: 100%;
@@ -526,20 +538,17 @@ body {
   background-color: #fff;
 }
 
+
 .sign-in {
   height: 665px;
   width: 486px;
-  // left: 717px;
-  // top: 208px;
-  border-radius: 4px;
-  border: 1px solid red;
-  background-color: #fff;
-  margin: 0 auto;
+  position: absolute;
+  top: 220%;
+  left:50%;
+  transform:translate(-50%, -50%);
 
   &__close {
     position: relative;
-    background-color: transparent; 
-    display: block;
     padding-right: 24px;
     padding-top: 24px;
     margin-left: 438px;
@@ -547,7 +556,106 @@ body {
     margin-bottom: 4px;
    }
 
-  &__close::after {
+  &__title {
+    margin-bottom: 24px;
+  }
+
+  &__subtitle {
+    padding-bottom: 24px;  
+    padding-left: 48px;
+    padding-right: 48px;
+
+  }
+
+  &__form {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-bottom: 24px;
+  }
+
+  &__email {
+    margin-bottom: 20px;
+  }
+
+  &__email-input {
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+
+  &__password {
+    margin-bottom: 20px;
+  }
+
+  &__password-text {
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+
+  &__eye {
+    position: absolute;
+    top: 40px;
+    right: 14px;
+
+  }
+
+  &__checkbox {
+    position: relative;
+    display: inline-block;
+    padding-right: 129px;
+  }
+
+
+  &__input-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 20px;
+  }
+
+  &__checkbox-text {
+    position: relative;
+    padding: 0 0 0 28px;
+    cursor: pointer;
+  }
+
+  &__input-checkbox:checked + &__checkbox-text:before {
+    // background: #17696A;
+    background: url('../img/check.svg') center center/ 10px 8px no-repeat, #17696A;
+  }
+
+  &__forgot-link{
+    display: inline-block;
+    @include small-regular;
+    color: rgba(23, 105, 106, 1);
+  }
+
+  &__btn-wrapper{
+    margin: 24px 0;
+  }
+
+
+  &__text-inner {
+    color: rgba(23, 105, 106, 1);
+  }
+}
+
+
+
+.modal-window {
+    border-radius: 4px;
+    background-color: #fff;
+    margin: 0 auto;
+    opacity: 0;
+    z-index: -40;
+    transition: 500ms ease-in;
+
+
+  &__btn-close {
+    background-color: transparent; 
+    display: block;
+  }
+
+  &__btn-close::after {
     content: '';
     display: inline-block;
     padding-left: 1px;
@@ -560,7 +668,7 @@ body {
     border-radius: 1px;
   }
 
-  &__close::before {
+  &__btn-close::before {
     content: '';
     display: inline-block;
     padding-left: 1px;
@@ -580,22 +688,16 @@ body {
     line-height: 42px;
     letter-spacing: 0em;
     text-align: center;
-    margin-bottom: 24px;
+    color: #000;
   }
 
   &__subtitle {
     @include small-regular;
     color: $color700;
-    padding-bottom: 24px;  
-    padding-left: 48px;
-    padding-right: 48px;
     text-align: center;
   }
 
   &__form {
-    padding-left: 48px;
-    padding-right: 48px;
-    padding-bottom: 24px;
     border-bottom: 1px solid #E5E8ED;
   }
 
@@ -603,18 +705,16 @@ body {
     @include small-regular;
     color: $color800;
     display: block;
-    margin-bottom: 20px;
+
   }
 
   &__email-input {
-    margin-top: 4px;
     border: 1px solid #D7DADD;
     border-radius: 4px;
     display: block;
     width: 100%;
     height: 44px;
     @include small-regular;
-    padding-left: 16px;
   }
 
   &__email-input::placeholder {
@@ -627,64 +727,61 @@ body {
     @include small-regular;
     color: $color800;
     display: block;
-    margin-bottom: 20px;
     position: relative;
   }
 
   &__password-text {
-    margin-top: 4px;
     border: 1px solid #D7DADD;
     border-radius: 4px;
     display: block;
     width: 100%;
     height: 44px;
     @include small-regular;
-    padding-left: 16px;
   }
 
   &__password-text::placeholder {
     color: $color800;
   }
 
-  &__eye {
-    position: absolute;
-    top: 40px;
-    right: 14px;
-
-  }
-
   &__checkbox {
     @include small-regular;
     color: $color800;
-    padding-right: 141px;
+    cursor: pointer;
   }
 
-  &__input-checkbox {
-    display: inline-block;
 
+  &__checkbox-text {
+    cursor: pointer;
   }
 
-  &__forgot-link{
-    display: inline-block;
-    @include small-regular;
-    color: rgba(23, 105, 106, 1);
-
-  }
-
-  &__btn-wrapper{
-    margin: 24px 0;
+  &__checkbox-text::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid #17696A;
+    transition: .2s;  
   }
 
   &__btn {
     display: block;
-    padding: 0px 172.5px;
-    
     background-color: transparent;
     height: 44px;
     background-color: rgba(23, 105, 106, 1);
     border-radius: 4px;
-
+    padding: 0px 170px;
   }
+
+
+  &__btn:hover {
+    background-color: rgb(9, 75, 77);
+    transition: 0.2s;
+    box-shadow: 0px 4px 15px rgba(10, 10, 10, 0.468);
+  }
+
 
   &__btn-text {
     display: block;
@@ -711,11 +808,18 @@ body {
 
   &__text-inner {
     color: rgba(23, 105, 106, 1);
+
   }
+}
 
+.social {
 
-  &__social-media {
-    padding: 24px 48px 27px 48px;
+  padding: 24px 48px 27px 48px;
+
+  &__items {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
   }
 
   &__with {
@@ -723,12 +827,7 @@ body {
     color: $color700;
     text-align: center;
   }
-
-  &__social-link {
-    padding-top: 16px;
-    display: flex;
-    justify-content: center;
-  }
+  
 
   &__item {
     width: 32px;
@@ -739,14 +838,13 @@ body {
 
   &__link {
     position: relative;
-  
   }
 
   &__img {
     position: absolute;
     top: 8px;
-    left: 8px;
-    object-position: center;
+    left: 10px;
+
     z-index: 1;
   }
 
@@ -754,4 +852,144 @@ body {
     margin-right: 12px;
   }
 
+  &__item:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(23, 105, 106, 0.12);
+    cursor:pointer;
+    transition: all 0.2s;
+    path {
+      fill: #17696A
+  }
 }
+}
+
+
+.sign-up {
+  position: absolute;
+  width: 486px;
+  height: 851px;
+  top: 280%;
+  left:50%;
+  transform:translate(-50%, -50%);
+
+
+  &__close {
+    position: relative;
+    padding-right: 24px;
+    padding-top: 24px;
+    margin-left: 438px;
+    margin-top: 24px;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    padding-bottom: 24px;
+  }
+
+  &__subtitle {
+    padding-bottom: 24px;  
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  &__form {
+    padding-left: 48px;
+    padding-right: 48px;
+    padding-bottom: 24px;
+  }
+
+  &__name {
+    @include small-regular;
+    color: $color800;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  &__name-input {
+    border: 1px solid #D7DADD;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    height: 44px;
+    @include small-regular;
+    padding-left: 16px;
+
+  }
+
+  &__name-input::placeholder {
+    @include small-regular;
+    display: block;
+    color: rgba(154, 156, 165, 1);
+
+  }
+
+  &__email {
+    margin-bottom: 20px;
+  }
+
+  &__email-input {
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+
+  &__password {
+
+  }
+
+  &__password-text {
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+
+  &__eye {
+    position: absolute;
+    top: 40px;
+    right: 14px;
+  }
+
+  &__checkbox {
+    position: relative;
+    display: inline-block;
+    padding-right: 129px;
+  }
+
+  &__input-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    margin: 10px 0 0 20px;
+  }
+
+  &__checkbox-text {
+    position: relative;
+    padding: 0 0 0 28px;
+    cursor: pointer;
+  }
+
+  &__input-checkbox:checked + &__checkbox-text:before {
+    background: url('../img/check.svg') center center/ 10px 8px no-repeat, #17696A;
+  }
+
+  &__btn-wrapper {
+    margin: 24px 0;
+  }
+
+  &__text-inner {
+    color: rgba(23, 105, 106, 1);
+  }
+
+}
+
+.sign-in--active {
+  opacity: 1;
+  z-index: 40;
+  transition: opacity 500ms ease-in;
+}
+
+.sign-up--active {
+  opacity: 1;
+  z-index: 40;
+  transition: opacity 500ms ease-in;
+}
+
+
