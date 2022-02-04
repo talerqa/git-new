@@ -7,7 +7,6 @@ menuList.addEventListener('click', event => {
       activeMenu.classList.add('menu__active--active')
       document.querySelector('.main').classList.add('dark__theme')
       document.querySelector('.footer').classList.add('dark__theme')
-      document.querySelector('body').style.overflow = 'hidden';
    } 
 
 })
@@ -36,19 +35,35 @@ document.addEventListener('keydown', function (event) {
 const $money = document.querySelector('.header__top-money')
 const $activeMoney = document.querySelector('.header__money');
 
-// Валюта меню
-  $money.addEventListener('click', event =>{
-    if (event.target.closest('.header__top-money')) {
-      
-      $activeMoney.classList.toggle('header__top-money__inner--active');
-    } 
-  })
 
-  document.querySelector('body').addEventListener('click', event => {   
-    if (!event.target.closest('.header__top-money')) {
-      $activeMoney.classList.remove('header__top-money__inner--active');
+// Валюта меню !!!!
+
+document.querySelector('body').addEventListener('click', event => {   
+  if (event.target.closest('.header__top-money')) {
+    $activeMoney.classList.add('header__top-money__inner--active');   
+  }
+
+  
+})
+
+document.querySelector('.header__top-money').addEventListener('mouseover', event => {
+  if (event.target.closest('.header__top-money') && event.target.closest('header__top-money__inner--active')){
+     $activeMoney.classList.remove('header__top-money__inner--active');   
     }
-  })
+}) 
+
+  // $money.addEventListener('click', event =>{
+  //   if (event.target.closest('.header__top-money')) {
+      
+  //     $activeMoney.classList.add('header__top-money__inner--active');      
+  //     if(event.target.closest('.header__top-money__inner--active')){
+  //       console.log(12);
+  //     }
+  //   }    
+  // })
+
+
+
 
 
 // скрытие\ показ паролья 

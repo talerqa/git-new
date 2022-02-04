@@ -27,7 +27,6 @@ $color700: rgba(120, 122, 128, 1);
   text-align: left;
 }
 
-
 @mixin  base-regular {
   font-size: 16px;
   font-style: normal;
@@ -117,13 +116,25 @@ body {
     }
   }
 
+  &__money-show {
+    display: block;
+    display: flex;
+     align-items: center;
+  }
+
+  &__money-show-block {
+    display: block;
+    display: flex;
+    align-items: center;
+  }
+
   &__top-money {
     display: flex;
-    padding: 11px 60px 12px 0px;
+    margin: 11px 60px 12px 0px;
     align-items: center;
     background-color: transparent;
     position: relative;
-
+    cursor: pointer;
   }
 
   &__money {
@@ -133,10 +144,13 @@ body {
   &__top-money__inner--active {
     display: flex;
     position: absolute;
+    align-items: center;
     top:100%;
+    left: -7px;
     z-index: 10;
+    padding: 8px 9px 8px 3px;
     background-color: $color900;
-    padding: 8px 1px 8px 1px;
+ 
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
   }
@@ -507,6 +521,7 @@ body {
 .menu__active--active {
   z-index: 50;
   opacity: 1;
+  transition: opacity 500ms ease ;
 }
 
 .dark__theme {
