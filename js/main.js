@@ -254,22 +254,28 @@ document.addEventListener('click', (event) => {
       if (e.checked) {
         sizeValueNum =  e.value
        } 
-      })
+      });
+
     // Задаем переменную и выполняем функцию для каждого элемента Color
     let colorValueNum;
+
      document.querySelectorAll('.product__item-color-radio').forEach( e => {
       if (e.checked) {
           colorValueNum =  e.value
           }    
-     })
+     });
 
+
+    const $card = event.target.closest('.product__item');
+
+    // Создаем карточку товара, которая будет перенесена в корзину
     const prodInfo = {
-      id: document.querySelector('.product__item').dataset.id,
-      img: document.querySelector('.product__img').getAttribute('src'),
+      id: $card.dataset.id,
+      img: $card.querySelector('.product__img').getAttribute('src'),
       colorValue:  colorValueNum,
       sizeValue: sizeValueNum,
-      title: document.querySelector('.product__item-title ').innerText,
-      price: document.querySelector('.product__item-price').innerText,
+      title: $card.querySelector('.product__item-title').innerText,
+      price: $card.querySelector('.product__item-price').innerText,
     }
 
       const cardItemHTML = 
@@ -297,62 +303,72 @@ document.addEventListener('click', (event) => {
       </button>
       
     </div>
-    <div class="card__item-line"></div>`
+ `
 
-    document.querySelector('.card__items').insertAdjacentHTML('afterend', cardItemHTML);
+    document.querySelector('.card__items').insertAdjacentHTML('beforeend', cardItemHTML);
 
-    const cardItemDel = document.querySelectorAll('.card__item-delete');
 
-      cardItemDel.forEach( element => 
-        element.addEventListener('click', () => {
-          document.querySelector('.card__item').remove()
-      })
 
-      )
+    // Подсчет общей суммы в корзине
+    const cardItem = document.querySelectorAll('.card__item');
+    let totalPrice = 0;
+
+    cardItem.forEach( function (item) {
+      const price$ = item.querySelector('.card__item-price')
+
+      const currentPrice = +price$.innerText;
+
+      totalPrice = totalPrice + currentPrice;
+      
+      const subTotal = document.querySelector('.card__subtotal-price');
+
+      subTotal.innerText = totalPrice;
+
+    })
 
   }
-
   
-    // const prodInCard = document.querySelector(`[data-id='${prodInfo.id}']`)
 
-  
-    // if (document.querySelector('.card__item_3').hasAttribute('data-id') == '1' ) {
-    //   document.querySelector('.card__value_3').innerText  =
-    //   parseInt(document.querySelector('.card__value').innerText) +
-    //   parseInt(document.querySelector('.product__item-value').innerText)
-    //     console.log(12);
-    // } 
-    // else {
-    //   const cardItemHTML = 
-    //   `<div class="card__item" data-id="${prodInfo.id}">
-    //     <img class="card__img" src="${prodInfo.img}" alt="">
-    //     <div class="card__header">
-    //       <p class="card__text">
-    //       ${prodInfo.title}
-    //       </p>
-    //       <p class="card__price">
-    //         ${prodInfo.price}
-    //       </p>
-    //       <p class="card__value">
-    //         ${prodInfo.value}
-    //       </p>
-    //     </div>
-    //   </div>`
+  if(event.target.closest('.card__item-delete')) {
+ 
+    event.target.closest('.card__item').remove();
 
+    const cardItem = document.querySelectorAll('.card__item');
+    let totalPrice = 0;
+
+    cardItem.forEach( function (item) {
+      const price$ = item.querySelector('.card__item-price')
+
+      const currentPrice = +price$.innerText;
+
+      totalPrice = totalPrice - currentPrice;
       
-    //   document.querySelector('.card').insertAdjacentHTML('beforeend', cardItemHTML)
+      const subTotal = document.querySelector('.card__subtotal-price');
 
+      subTotal.innerText = Math.abs(totalPrice);
+    })
 
-//     }
+    
 
-//   }
+    const cardItems = document.querySelector('.card__items');
 
- })
-
-
-
- 
-
- 
-
+    if (cardItems.children.length == 0) {
   
+      const subTotal = document.querySelector('.card__subtotal-price');
+      subTotal.innerText = 0;
+    }
+
+    }
+
+    const cardItems = document.querySelector('.card__items');
+    const valueNumber = document.querySelector('.card__value-number')
+    const valueCart = document.querySelector('.header__cart-value')
+
+    valueNumber.innerText = +cardItems.children.length;
+    valueCart.innerText = +cardItems.children.length
+})
+
+
+
+
+
